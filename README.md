@@ -11,3 +11,8 @@ Assignment 4: Troubleshooting and Exception Handling: Programming Beyond Expecte
 
 ## pixell_transaction_report.py
 Ensure all programs are correct, accurate and use exception handling apporopriately.
+
+## Code Modification:
+Exception Modification made were:
+FileNotFound - Raised when the file is not found 
+Exception - Catches any additional unhandled exceptions
