@@ -8,3 +8,6 @@ Zander Santos
 
 ## Assignment
 Assignment 4: Troubleshooting and Exception Handling: Programming Beyond Expected Results
+
+## pixell_transaction_report.py
+Ensure all programs are correct, accurate and use exception handling apporopriately.
