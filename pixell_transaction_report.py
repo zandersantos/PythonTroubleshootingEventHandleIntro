@@ -92,7 +92,7 @@ try:
     if transaction_count == 0:
         print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount)}")
     else:
-     print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_counter)}")
+     print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_count)}")
 
     print("\nREJECTED RECORDS\n================")
     for record in rejected_records:
