@@ -53,3 +53,8 @@ Troubleshooting Modifications made were:
 
 On line 70, changed it so that the total transaction amount would subtract a withdrawal transaction instead of adding it to the total
 
+## Code Modification:
+Troubleshooting Modifications made were:
+
+Changed the decimal placements shown to 2 when the customer balance and the average transaction amounts are shown. U
+

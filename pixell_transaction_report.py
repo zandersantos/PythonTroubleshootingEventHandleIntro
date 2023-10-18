@@ -37,16 +37,24 @@ try:
             
             # Extract the transaction type from the second column
             transaction_type = row[1]
+            
             ### VALIDATION 1 ###
-             
+            
+             #if the transaction type is a valid transaction type then it is a true valid record
             if transaction_type in valid_transaction_types:
                 valid_record = True
+            #if the transaction type is not a valid transaction type then it is false valid record and it will
+            #display an error message
             elif not transaction_type in valid_transaction_types:
                 valid_record = False
                 error_message += "ERROR: The record has an invalid transaction type"
             
             # Extract the transaction amount from the third column
+            
             ### VALIDATION 2 ###
+            
+            #turn the transaction amount into a float, if it is unable to
+            #turn it into a false valid record and display an error message
             try:
                 transaction_amount = float(row[2])
 
@@ -82,7 +90,7 @@ try:
     for customer_id, data in customer_data.items():
         balance = data['balance']
 
-        print(f"\nCustomer {customer_id} has a balance of {balance}.")
+        print(f"\nCustomer {customer_id} has a balance of {balance:,.2f}.")
         # Print the transaction history for the customer
         print("Transaction History:")
         for transaction in data['transactions']:
@@ -90,9 +98,9 @@ try:
             print(f"\t{type.capitalize()}: {amount}")
     
     if transaction_count == 0:
-        print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount)}")
+        print(f"\nAVERAGE TRANSACTION AMOUNT: {total_transaction_amount:,.2f}")
     else:
-     print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_count)}")
+     print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_count):,.2f}")
 
     print("\nREJECTED RECORDS\n================")
     for record in rejected_records:
