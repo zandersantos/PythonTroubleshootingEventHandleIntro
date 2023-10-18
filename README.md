@@ -47,3 +47,9 @@ On line 92, changed the variable from transaction_counter to transaction_count b
 Troubleshooting Modifications made were:
 
 On line 95, changed the variable from transaction_counter to transaction_count because transaction_count was the variable being used to count transactions
+
+## Code Modification:
+Troubleshooting Modifications made were:
+
+On line 70, changed it so that the total transaction amount would subtract a withdrawal transaction instead of adding it to the total
+

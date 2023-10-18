@@ -67,7 +67,7 @@ try:
                 elif transaction_type == 'withdraw':
                     customer_data[customer_id]['balance'] -= transaction_amount
                     transaction_count += 1
-                    total_transaction_amount += transaction_amount
+                    total_transaction_amount -= transaction_amount
                 
                 # Record  transactions in the customer's transaction history
                 customer_data[customer_id]['transactions'].append((transaction_amount, transaction_type))
