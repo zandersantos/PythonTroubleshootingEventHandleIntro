@@ -9,7 +9,7 @@ report the results.
 import csv
 import os
  
-valid_transaction_types = ['deposit', 'withdraw']
+valid_transaction_types = ["deposit","withdraw"]
 customer_data = {}
 rejected_records = []
 transaction_count = 0
@@ -17,14 +17,18 @@ transaction_counter = 0
 total_transaction_amount = 0
 valid_record = True
 error_message = ''
+transaction_amount = 0
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
 try:
     with open('bank_data.csv', 'r') as csv_file:
         reader = csv.reader(csv_file)
+        next(reader)
+
         for row in reader:
             # Reset valid record and error message for each iteration
+            
             valid_record = True
             error_message = ''
 
@@ -34,7 +38,10 @@ try:
             # Extract the transaction type from the second column
             transaction_type = row[1]
             ### VALIDATION 1 ###
-            if not transaction_type == valid_transaction_types:
+             
+            if transaction_type in valid_transaction_types:
+                valid_record = True
+            elif not transaction_type in valid_transaction_types:
                 valid_record = False
                 error_message += "ERROR: The record has an invalid transaction type"
             
@@ -45,23 +52,20 @@ try:
 
             except Exception as e:
                 valid_record = False
-                error_message += "ERROR: The record has a non-numeric transaction amount"
-                pass
+                error_message += "ERROR: The record has a non-numeric transaction amount"   
                 
-            
-            
             if valid_record:
                 # Initialize the customer's account balance if it doesn't already exist
                 if customer_id not in customer_data:
                     customer_data[customer_id] = {'balance': 0, 'transactions': []}
 
                 # Update the customer's account balance based on the transaction type
-                elif transaction_type == 'deposit':
+                if transaction_type == 'deposit':
                     customer_data[customer_id]['balance'] += transaction_amount
                     transaction_count += 1
                     total_transaction_amount += transaction_amount
-                elif transaction_type == 'withdrawal':
-                    customer_data[customer_id]['balance'] += transaction_amount
+                elif transaction_type == 'withdraw':
+                    customer_data[customer_id]['balance'] -= transaction_amount
                     transaction_count += 1
                     total_transaction_amount += transaction_amount
                 
@@ -73,8 +77,6 @@ try:
                 invalid_records = (row, error_message)
                 rejected_records.append(invalid_records)
             
-
-
     print("PiXELL River Transaction Report\n===============================\n")
     # Print the final account balances for each customer
     for customer_id, data in customer_data.items():
@@ -86,8 +88,11 @@ try:
         for transaction in data['transactions']:
             amount, type = transaction
             print(f"\t{type.capitalize()}: {amount}")
-
-    print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_counter)}")
+    
+    if transaction_count == 0:
+        print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount)}")
+    else:
+     print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_counter)}")
 
     print("\nREJECTED RECORDS\n================")
     for record in rejected_records:
